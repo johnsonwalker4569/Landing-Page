@@ -53,31 +53,11 @@
             width: 100%;
             max-width: 300px; 
             height: auto;
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
 
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            margin-bottom: 20px; 
-        }
-
-        .btn-img {
-            width: 100%;
-            max-width: 240px; 
-            height: auto;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-img:hover {
-            transform: translateY(-3px) scale(1.03);
-            filter: brightness(1.1);
-        }
-
-        /* โซนแถบคะแนนรีวิว 5 ดาว */
+        /* 🌟 แถบคะแนนรีวิว 5 ดาว */
         .rating-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
@@ -86,7 +66,7 @@
             color: #fff;
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 15px; /* ปรับระยะห่างหลังย้ายตำแหน่ง */
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .rating-stars {
@@ -94,14 +74,14 @@
             margin-right: 5px;
         }
 
-        /* โซนการ์ดการันตี 2 ข้อ */
+        /* 📦 การ์ดการันตี 2 ข้อ */
         .trust-container {
             display: flex;
             justify-content: space-between;
             width: 100%;
             max-width: 340px;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 25px; /* ปรับระยะห่างก่อนเข้าสู่โซนปุ่ม */
         }
         .trust-card {
             flex: 1;
@@ -119,6 +99,26 @@
         }
         .trust-icon {
             font-size: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 30px; /* เว้นระยะก่อนลงไปที่สไลด์ภาพ */
+        }
+
+        .btn-img {
+            width: 100%;
+            max-width: 240px; 
+            height: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-img:hover {
+            transform: translateY(-3px) scale(1.03);
+            filter: brightness(1.1);
         }
 
         /* โซนสไลด์ */
@@ -143,7 +143,7 @@
             flex-shrink: 0;
         }
 
-        /* กล่องยอดสั่งซื้อล่าสุด */
+        /* กล่องยอดสั่งซื้อล่าสุด Realtime */
         .order-panel {
             width: 100%;
             max-width: 360px; 
@@ -243,7 +243,6 @@
             margin-top: 3px;
         }
 
-        /* 🛠️ แก้ไขจุดนี้: ขยายความกว้างฝั่งขวาเป็น 110px เพื่อให้ตัวหนังสือ "จ่ายแล้ว" ไม่ขาดขอบ */
         .item-right {
             text-align: right;
             display: flex;
@@ -261,7 +260,6 @@
             margin-bottom: 2px;
         }
 
-        /* สไตล์ปุ่มสถานะ รองรับข้อความยาวเต็มคำ */
         .item-status {
             font-size: 11px;
             color: #2ea34a;
@@ -279,15 +277,6 @@
     <div class="container">
         <img src="logo.png" alt="Logo" class="logo">
         
-        <div class="btn-container">
-            <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank">
-                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
-            </a>
-            <a href="https://cutt.ly/UtU0uefS" target="_blank">
-                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
-            </a>
-        </div>
-
         <div class="rating-box">
             <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากลูกค้าผู้ใช้จริง
         </div>
@@ -301,6 +290,15 @@
                 <span class="trust-icon">⭐</span>
                 <span>รับประกันของแท้</span>
             </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank">
+                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
+            </a>
+            <a href="https://cutt.ly/UtU0uefS" target="_blank">
+                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
+            </a>
         </div>
 
         <div class="slider-wrapper">
