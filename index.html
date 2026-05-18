@@ -90,7 +90,7 @@
             margin-right: 5px;
         }
 
-        /* 📦 โซนการ์ดการันตีเหลือ 2 ข้อตามสั่ง (แบ่งครึ่งซ้ายขวาพอดีสวย ๆ) */
+        /* 📦 โซนการ์ดการันตีเหลือ 2 ข้อ (เก็บเงินปลายทาง + รับประกันของแท้) */
         .trust-container {
             display: flex;
             justify-content: space-between;
@@ -224,9 +224,10 @@
         }
 
         .item-user {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             color: #e0e0e0;
+            white-space: nowrap; /* ห้ามชื่อ/เบอร์ตัดบรรทัด */
         }
 
         .item-time {
@@ -237,22 +238,29 @@
 
         .item-right {
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            min-width: 80px; /* เพิ่มพื้นที่ฝั่งขวาเพื่อป้องกันตัวอักษรตกบรรทัด */
         }
 
         .item-amount {
             font-size: 14px;
             font-weight: bold;
             color: #28a745; 
+            margin-bottom: 2px;
         }
 
+        /* 🛠️ ปรับแต่งปุ่มสถานะให้ยาวพอดี ไม่หักตัวอักษรลงมาข้างล่าง */
         .item-status {
-            font-size: 10px;
+            font-size: 11px;
             color: #28a745;
             background: rgba(40, 167, 69, 0.15);
-            padding: 2px 6px;
+            padding: 3px 8px;
             border-radius: 4px;
+            white-space: nowrap; /* ล็อคให้ข้อความอยู่บรรทัดเดียวกัน 100% */
             display: inline-block;
-            margin-top: 2px;
         }
     </style>
 </head>
@@ -271,17 +279,17 @@
         </div>
 
         <div class="rating-box">
-            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากผู้ใช้จริง
+            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากลูกค้าผู้ใช้จริง
         </div>
 
         <div class="trust-container">
             <div class="trust-card">
                 <span class="trust-icon">🛡️</span>
-                <span>ดูแลตลอด 24 ชั่วโมง</span>
+                <span>เก็บเงินปลายทาง</span>
             </div>
             <div class="trust-card">
                 <span class="trust-icon">⭐</span>
-                <span>มั่นคง 100% ไม่มีโกง</span>
+                <span>รับประกันของแท้</span>
             </div>
         </div>
 
@@ -297,7 +305,7 @@
 
         <div class="order-panel">
             <div class="order-header-wrapper">
-                <div class="order-header">💰รายการถอนล่าสุด💰</div>
+                <div class="order-header">🛒 รายการสั่งซื้อล่าสุด</div>
                 <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
             </div>
             
@@ -356,7 +364,7 @@
                     </div>
                     <div class="item-right">
                         <div class="item-amount">${amountStr}</div>
-                        <div class="item-status">✓จ่ายเเล้ว</div>
+                        <div class="item-status">✓ จ่ายแล้ว</div>
                     </div>
                 </div>
             `;
