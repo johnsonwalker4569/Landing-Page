@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BF CLUB - Official</title>
+    <title>BF CLUB 86 - Official Shop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -222,6 +222,7 @@
             display: flex;
             flex-direction: column;
             min-width: 0;
+            flex: 1; 
         }
 
         .item-user {
@@ -230,7 +231,7 @@
             color: #f4f4f5;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: clip; 
         }
 
         .item-time {
@@ -246,7 +247,7 @@
             align-items: flex-end;
             justify-content: center;
             flex-shrink: 0;
-            width: 110px; 
+            width: 95px; 
         }
 
         .item-amount {
@@ -342,16 +343,14 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // ชุด 3 ตัวแรกของเบอร์มือถือไทยจากรูปภาพของพี่
+        // ชุดนำหน้า 3 ตัวแรกจากรูปภาพของพี่
         const prefixes = [
             "080", "081", "082", "083", "084", "085", "086", "087", "088", "089",
             "090", "091", "092", "093", "094", "095", "096", "097", "098", "099",
-            "061", "062", "063", "064", "065", "081", "085", "092", "095", "063",
-            "080", "083", "087", "090", "094", "098", "061", "064", "082", "086",
-            "089", "091", "093", "096", "097", "099", "062", "065", "084", "088"
+            "061", "062", "063", "064", "065"
         ];
 
-        // รายการราคา 200 รายการเต็มระบบ
+        // รายการราคา 200 รายการตามโครงสร้าง
         const amounts = [
             12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
             11500, 16800, 21900, 27500, 43500,
@@ -381,13 +380,18 @@
             return randomPrice.toLocaleString('th-TH') + " ฿";
         }
 
-        // 🚀 แก้ไขฟังก์ชันโครงสร้างเบอร์โทรศัพท์ใหม่: ให้เป็นสไตล์ 0XX-XXX-XXXX แบบมาตรฐาน 10 หลักเป๊ะ ๆ
+        // 🚀 ฟังก์ชันจัดแพทเทิร์นเบอร์โทรศัพท์ใหม่: ล็อกโครงสร้างสไตล์ 086-60X-XXXX เป๊ะ ๆ ตามสั่ง
         function createRandomOrder(timeText) {
-            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)]; // ได้ 3 ตัวแรก (เช่น 081)
-            const last4 = Math.floor(1000 + Math.random() * 9000); // สุ่ม 4 ตัวท้าย (เช่น 5678)
+            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)]; // ได้ 3 ตัวแรก เช่น 086
+            const digit4 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 4
+            const digit5 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 5
+            // ส่วนหลักที่ 6 บังคับเป็นตัว "X" เสมอ
             
-            // ประกอบร่างเป็นแพทเทิร์นมาตรฐานไทย: 0XX-XXX-XXXX
-            const userStr = "คุณลูกค้า: " + randomPrefix + "-XXX-" + last4;
+            // สุ่มเลข 4 ตัวท้าย
+            const last4 = Math.floor(1000 + Math.random() * 9000); 
+            
+            // ประกอบร่างเป็นโครงสร้างแพทเทิร์น: 0XX-XXX-XXXX ตัวอย่าง 086-60X-XXXX
+            const userStr = "คุณลูกค้า: " + randomPrefix + "-" + digit4 + digit5 + "X-" + last4;
             const amountStr = getRandomAmount();
 
             return '<div class="order-item">' +
@@ -407,14 +411,14 @@
 
         const orderList = document.getElementById('orderList');
 
-        // ตั้งค่าหน้าตาตอนเปิดเว็บครั้งแรกให้เนียน ๆ
+        // รายการออเดอร์เริ่มต้นตอนโหลดหน้าเว็บครั้งแรก
         orderList.innerHTML = 
             createRandomOrder("เมื่อสักครู่นี้") +
             createRandomOrder("1 นาทีที่แล้ว") +
             createRandomOrder("2 นาทีที่แล้ว") +
             createRandomOrder("4 นาทีที่แล้ว");
 
-        // หน่วงเวลาเกิดออเดอร์ใหม่อยู่ที่ 30-90 วินาที เพื่อความเนียนตา ไม่เร็วเกินไป
+        // หน่วงเวลาให้สุ่มเกิดออเดอร์ใหม่ทุกๆ 30 - 90 วินาที เพื่อความเนียนสมจริง ไม่รัวเกินไป
         function startOrderLoop() {
             const minTime = 30000; 
             const maxTime = 90000; 
