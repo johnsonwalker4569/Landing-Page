@@ -15,17 +15,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* แยกฉากหลังออกมาทำความมัว (Blur) เพื่อไม่ให้โลโก้และปุ่มมัวไปด้วย */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url('bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            padding: 20px;
+            filter: blur(8px); /* ค่าความมัวประมาณ 25% */
+            z-index: -1;
+            transform: scale(1.05); /* ขยายภาพจิ๊กเดียวเพื่อเก็บขอบไม่ให้เห็นเส้นขาวตอนเบลอ */
         }
-        /* บีบเนื้อหาให้เป็นทรงแนวตั้งแคบๆ ตรงกลางจอ PC โดยไม่มีกรอบมาบัง */
         .container {
             text-align: center;
-            max-width: 430px; /* ความกว้างทรงมือถือ */
+            max-width: 430px; 
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -33,30 +46,21 @@
         }
         .logo {
             width: 100%;
-            max-width: 240px; /* ขนาดโลโก้ */
+            max-width: 240px; 
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 30px; /* เพิ่มระยะห่างด้านล่างแทนคำที่ลบไป */
             display: block;
         }
-        h1 {
-            color: #ffffff;
-            font-size: 2.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-        }
-        /* ปรับให้ปุ่มเรียงซ้อนกันเป็นแนวตั้งลงมาตรงกลาง */
         .btn-container {
             display: flex;
-            flex-direction: column; /* สั่งให้ปุ่มเรียงลงมาข้างล่าง */
+            flex-direction: column; 
             align-items: center;
-            gap: 20px; /* ระยะห่างระหว่างปุ่มบนกับปุ่มล่าง */
+            gap: 20px; 
             width: 100%;
         }
         .btn-img {
             width: 100%;
-            max-width: 240px; /* ขนาดความกว้างของปุ่ม */
+            max-width: 240px; 
             height: auto;
             cursor: pointer;
             transition: transform 0.2s;
@@ -70,8 +74,6 @@
 
     <div class="container">
         <img src="logo.png" alt="Logo" class="logo">
-        
-        <h1>Landing Page</h1>
         
         <div class="btn-container">
             <a href="#"><img src="button1.png" alt="สมัครสมาชิก" class="btn-img"></a>
