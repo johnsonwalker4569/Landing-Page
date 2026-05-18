@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BF CLUB - Shop</title>
+    <title>BF CLUB 86 - Official Shop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
 
-        /* 🌟 แถบคะแนนรีวิว 5 ดาว */
+        /* 🌟 แถบคะแนนรีวิวจากลูกค้าผู้ใช้จริง */
         .rating-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
@@ -66,7 +66,7 @@
             color: #fff;
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 15px; /* ปรับระยะห่างหลังย้ายตำแหน่ง */
+            margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .rating-stars {
@@ -74,23 +74,23 @@
             margin-right: 5px;
         }
 
-        /* 📦 การ์ดการันตี 2 ข้อ */
+        /* 📦 การ์ดการันตีความเป็นร้านค้าออนไลน์ */
         .trust-container {
             display: flex;
             justify-content: space-between;
             width: 100%;
             max-width: 340px;
-            gap: 10px;
-            margin-bottom: 25px; /* ปรับระยะห่างก่อนเข้าสู่โซนปุ่ม */
+            gap: 8px;
+            margin-bottom: 25px;
         }
         .trust-card {
             flex: 1;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            padding: 12px 5px;
+            padding: 10px 2px;
             color: #fff;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 400;
             display: flex;
             flex-direction: column;
@@ -98,7 +98,7 @@
             gap: 6px;
         }
         .trust-icon {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .btn-container {
@@ -106,7 +106,7 @@
             flex-direction: column;
             gap: 15px;
             width: 100%;
-            margin-bottom: 30px; /* เว้นระยะก่อนลงไปที่สไลด์ภาพ */
+            margin-bottom: 30px;
         }
 
         .btn-img {
@@ -121,7 +121,7 @@
             filter: brightness(1.1);
         }
 
-        /* โซนสไลด์ */
+        /* โซนภาพสไลด์รีวิวสินค้า */
         .slider-wrapper {
             width: 100%;
             max-width: 340px; 
@@ -143,7 +143,7 @@
             flex-shrink: 0;
         }
 
-        /* กล่องยอดสั่งซื้อล่าสุด Realtime */
+        /* กล่องรายงานคําสั่งซื้อล่าสุดแบบ Realtime */
         .order-panel {
             width: 100%;
             max-width: 360px; 
@@ -278,23 +278,27 @@
         <img src="logo.png" alt="Logo" class="logo">
         
         <div class="rating-box">
-            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากผู้ใช้จริง
+            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากลูกค้าผู้ใช้จริง
         </div>
 
         <div class="trust-container">
             <div class="trust-card">
+                <span class="trust-icon">📦</span>
+                <span>จัดส่งฟรีทั่วไทย</span>
+            </div>
+            <div class="trust-card">
                 <span class="trust-icon">🛡️</span>
-                <span>ดูแลตลอด 24 ชั่วโมง</span>
+                <span>เก็บเงินปลายทาง</span>
             </div>
             <div class="trust-card">
                 <span class="trust-icon">⭐</span>
-                <span>มั่นคง 100% ไม่มีโกง</span>
+                <span>รับประกันของแท้</span>
             </div>
         </div>
         
         <div class="btn-container">
             <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank">
-                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
+                <img src="button1.png" alt="สั่งซื้อสินค้า" class="btn-img">
             </a>
             <a href="https://cutt.ly/UtU0uefS" target="_blank">
                 <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
@@ -313,7 +317,7 @@
 
         <div class="order-panel">
             <div class="order-header-wrapper">
-                <div class="order-header">💰รายการถอนล่าสุด💰</div>
+                <div class="order-header">🛒 รายการสั่งซื้อล่าสุด</div>
                 <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
             </div>
             
@@ -344,12 +348,60 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // --- ระบบสุ่มเบอร์โทรศัพท์มั่วๆ ---
-        const prefixes = ["080", "081", "082", "083", "084", "085", "086", "087", "088", "089", "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", "061", "062", "063", "064", "065"];
+        // 🔥 อัปเกรด: ระบบสุ่มเบอร์โทรศัพท์จุใจ 200 เบอร์สุ่ม ไม่ซ้ำซาก
+        const prefixes = [
+            "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
+            "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
+            "061", "062", "063", "064", "065", "081", "085", "092", "095", "063",
+            "080", "083", "087", "090", "094", "098", "061", "064", "082", "086",
+            "089", "091", "093", "096", "097", "099", "062", "065", "084", "088",
+            "081", "082", "085", "087", "090", "092", "095", "098", "061", "063",
+            "080", "083", "086", "089", "091", "094", "097", "099", "062", "064",
+            "084", "085", "088", "090", "093", "096", "098", "061", "065", "082",
+            "081", "083", "087", "089", "092", "094", "095", "097", "063", "064",
+            "080", "084", "086", "088", "091", "093", "096", "099", "062", "065",
+            "082", "085", "088", "090", "094", "097", "061", "063", "080", "084",
+            "081", "086", "089", "092", "095", "098", "062", "065", "083", "087",
+            "080", "082", "084", "086", "088", "091", "093", "096", "099", "061",
+            "081", "083", "085", "087", "089", "090", "094", "097", "098", "062",
+            "082", "084", "087", "089", "091", "093", "095", "096", "099", "063",
+            "080", "083", "085", "088", "090", "092", "094", "097", "098", "064",
+            "081", "084", "086", "089", "091", "093", "095", "097", "099", "065",
+            "080", "082", "085", "087", "088", "090", "092", "094", "096", "061",
+            "081", "083", "086", "088", "089", "091", "093", "095", "097", "062",
+            "082", "084", "085", "087", "090", "092", "094", "096", "098", "063"
+        ];
+
+        // 🔥 อัปเกรด: ระบบสุ่มราคาสินค้า 200 ราคา (หลักหมื่นคัดมาเน้นๆ แค่ 15 ตัวเล็กลดความซ้ำตา)
+        const amounts = [
+            // โซนหลักหมื่น (มีแค่ 15 ตัวเลือก ไม่เกิน 45,000)
+            12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
+            11500, 16800, 21900, 27500, 43500,
+            // โซนหลักสิบ หลักร้อย หลักพัน (185 ตัวเลือกที่เหลือเน้นกระจายราคาสมจริง)
+            89, 150, 350, 590, 890, 1200, 1590, 2350, 3190, 4500,
+            59, 250, 450, 690, 990, 1350, 1690, 2450, 3290, 4800,
+            99, 190, 390, 750, 850, 1150, 1890, 2200, 3500, 5500,
+            49, 290, 490, 650, 950, 1290, 1990, 2690, 3900, 4990,
+            79, 120, 550, 790, 880, 1490, 1750, 2850, 3800, 5200,
+            39, 180, 320, 580, 820, 1250, 1650, 2100, 3400, 6200,
+            69, 220, 420, 680, 920, 1450, 1790, 2550, 3700, 7200,
+            85, 260, 480, 720, 980, 1380, 1850, 2800, 3600, 8500,
+            95, 300, 520, 850, 999, 1480, 1950, 2900, 3990, 9200,
+            45, 110, 380, 520, 780, 1100, 1420, 2150, 3100, 4200,
+            65, 160, 420, 630, 850, 1300, 1550, 2400, 3300, 5100,
+            75, 195, 460, 710, 910, 1390, 1720, 2650, 3450, 5800,
+            88, 230, 495, 760, 960, 1495, 1820, 2750, 3650, 6400,
+            90, 280, 540, 810, 1050, 1580, 1920, 2890, 3820, 6900,
+            35, 125, 310, 560, 840, 1180, 1610, 2250, 3250, 7400,
+            55, 175, 440, 670, 890, 1240, 1680, 2380, 3350, 7990,
+            72, 215, 470, 740, 930, 1360, 1750, 2590, 3550, 8200,
+            82, 245, 515, 785, 975, 1440, 1880, 2790, 3750, 8800,
+            92, 295, 565, 835, 1150, 1540, 1980, 2950, 3890, 9500
+        ];
+
         const times = ["เมื่อสักครู่นี้", "1 นาทีที่แล้ว", "2 นาทีที่แล้ว", "3 นาทีที่แล้ว", "4 นาทีที่แล้ว"];
 
         function getRandomAmount() {
-            const amounts = [350, 590, 890, 1200, 1590, 2350, 3190, 4500, 5990, 7500, 9200, 12500, 18900];
             const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
             return randomPrice.toLocaleString('th-TH') + " ฿";
         }
@@ -357,14 +409,14 @@
         function createRandomOrder(timeText) {
             const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
             const midDigit = Math.floor(Math.random() * 10); 
-            const userStr = `เบอร์โทรศัพท์: ${pref}-${midDigit}x-xxxx`;
+            const userStr = `คุณลูกค้า: ${pref}-${midDigit}x-xxxx`;
             const amountStr = getRandomAmount();
             const timeStr = timeText ? timeText : times[Math.floor(Math.random() * times.length)];
 
             return `
                 <div class="order-item">
                     <div class="item-left">
-                        <div class="item-icon">📦</div>
+                        <div class="item-icon">🛍️</div>
                         <div class="item-info">
                             <div class="item-user">${userStr}</div>
                             <div class="item-time">${timeStr}</div>
@@ -384,7 +436,7 @@
             createRandomOrder("เมื่อสักครู่นี้") +
             createRandomOrder("1 นาทีที่แล้ว") +
             createRandomOrder("3 นาทีที่แล้ว") +
-            createRandomOrder("5 นาทีที่แล้ว");
+            createRandomOrder("4 นาทีที่แล้ว");
 
         function startOrderLoop() {
             const randomTime = Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000; 
