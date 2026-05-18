@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Solution Co.</title>
+    <title>BF CLUB 86</title>
     <style>
         * {
             margin: 0;
@@ -15,12 +15,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
             overflow-x: hidden;
             position: relative;
         }
-        /* แยกฉากหลังออกมาทำความมัว (Blur) เพื่อไม่ให้โลโก้และปุ่มมัวไปด้วย */
+        /* พื้นหลังพร้อมความมัว 8% ของพี่ */
         body::before {
             content: "";
             position: fixed;
@@ -32,41 +32,70 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: blur(8px); /* ค่าความมัวประมาณ 8% */
+            filter: blur(8px); 
             z-index: -1;
-            transform: scale(1.05); /* ขยายภาพจิ๊กเดียวเพื่อเก็บขอบไม่ให้เห็นเส้นขาวตอนเบลอ */
+            transform: scale(1.1); 
         }
+
         .container {
             text-align: center;
-            max-width: 430px; 
+            max-width: 400px; 
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
+        /* ตรงนี้ปรับให้โลโก้ใหญ่เด่นขึ้นมาแล้วครับพี่ */
         .logo {
             width: 100%;
-            max-width: 240px; 
+            max-width: 300px; /* เพิ่มความกว้างโลโก้ให้ใหญ่สะใจ */
             height: auto;
-            margin-bottom: 30px; /* เพิ่มระยะห่างด้านล่างแทนคำที่ลบไป */
-            display: block;
+            margin-bottom: 30px; /* เพิ่มระยะห่างระหว่างโลโก้กับปุ่ม */
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
+
         .btn-container {
             display: flex;
-            flex-direction: column; 
-            align-items: center;
-            gap: 20px; 
+            flex-direction: column;
+            gap: 15px;
             width: 100%;
+            margin-bottom: 30px; /* เพิ่มระยะห่างด้านล่างปุ่ม เพื่อเว้นช่องไฟให้สไลด์ */
         }
+
+        /* ตรงนี้ปรับให้ปุ่มเล็กลงกว่าโลโก้เล็กน้อยเพื่อให้โลโก้เด่นครับ */
         .btn-img {
             width: 100%;
-            max-width: 240px; 
+            max-width: 240px; /* บีบขนาดปุ่มลงมานิดหน่อย ไม่ให้แย่งซีนโลโก้ */
             height: auto;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
+
         .btn-img:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* --- เพิ่มโค้ดระบบสไลด์ภาพ 5 รูปของพี่ ตรงนี้ --- */
+        .slider-wrapper {
+            width: 100%;
+            max-width: 320px; 
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .slider {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider img {
+            width: 100%;
+            height: auto;
+            display: block;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -76,10 +105,38 @@
         <img src="logo.png" alt="Logo" class="logo">
         
         <div class="btn-container">
-            <a href="https://bfclubgame.com/?register=1&key=GOAT"><img src="button1.png" alt="สมัครสมาชิก" class="btn-img"></a>
-            <a href="https://cutt.ly/UtU0uefS"><img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img"></a>
+            <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank">
+                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
+            </a>
+            <a href="https://cutt.ly/UtU0uefS" target="_blank">
+                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
+            </a>
+        </div>
+
+        <div class="slider-wrapper">
+            <div class="slider" id="slider">
+                <img src="slide1.png" alt="Slide 1">
+                <img src="slide2.png" alt="Slide 2">
+                <img src="slide3.png" alt="Slide 3">
+                <img src="slide4.png" alt="Slide 4">
+                <img src="slide5.png" alt="Slide 5">
+            </div>
         </div>
     </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        let index = 0;
+        const totalImages = 5; 
+
+        setInterval(() => {
+            index++;
+            if (index >= totalImages) {
+                index = 0;
+            }
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }, 3000); 
+    </script>
 
 </body>
 </html>
