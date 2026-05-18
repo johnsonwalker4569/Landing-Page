@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BF CLUB 86</title>
+    <title>AI Solution Co.</title>
     <style>
         * {
             margin: 0;
@@ -15,12 +15,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             padding: 20px;
             overflow-x: hidden;
             position: relative;
         }
-        /* พื้นหลังพร้อมความมัว 8% ของพี่ */
+        /* แยกฉากหลังออกมาทำความมัว (Blur) เพื่อไม่ให้โลโก้และปุ่มมัวไปด้วย */
         body::before {
             content: "";
             position: fixed;
@@ -32,48 +32,41 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: blur(8px); 
+            filter: blur(8px); /* ค่าความมัวประมาณ 8% */
             z-index: -1;
-            transform: scale(1.1); 
+            transform: scale(1.05); /* ขยายภาพจิ๊กเดียวเพื่อเก็บขอบไม่ให้เห็นเส้นขาวตอนเบลอ */
         }
-
         .container {
             text-align: center;
-            max-width: 400px; 
+            max-width: 430px; 
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
-        /* ตรงนี้ปรับให้โลโก้ใหญ่เด่นขึ้นมาแล้วครับพี่ */
         .logo {
             width: 100%;
-            max-width: 300px; /* เพิ่มความกว้างโลโก้ให้ใหญ่สะใจ */
+            max-width: 240px; 
             height: auto;
-            margin-bottom: 30px; /* เพิ่มระยะห่างระหว่างโลโก้กับปุ่ม */
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            margin-bottom: 30px; /* เพิ่มระยะห่างด้านล่างแทนคำที่ลบไป */
+            display: block;
         }
-
         .btn-container {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            flex-direction: column; 
+            align-items: center;
+            gap: 20px; 
             width: 100%;
         }
-
-        /* ตรงนี้ปรับให้ปุ่มเล็กลงกว่าโลโก้เล็กน้อยเพื่อให้โลโก้เด่นครับ */
         .btn-img {
             width: 100%;
-            max-width: 240px; /* บีบขนาดปุ่มลงมานิดหน่อย ไม่ให้แย่งซีนโลโก้ */
+            max-width: 240px; 
             height: auto;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s;
         }
-
         .btn-img:hover {
-            transform: translateY(-3px) scale(1.03);
-            filter: brightness(1.1);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -83,12 +76,8 @@
         <img src="logo.png" alt="Logo" class="logo">
         
         <div class="btn-container">
-            <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank">
-                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
-            </a>
-            <a href="https://cutt.ly/UtU0uefS" target="_blank">
-                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
-            </a>
+            <a href="https://bfclubgame.com/?register=1&key=GOAT"><img src="button1.png" alt="สมัครสมาชิก" class="btn-img"></a>
+            <a href="https://cutt.ly/UtU0uefS"><img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img"></a>
         </div>
     </div>
 
