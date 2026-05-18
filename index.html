@@ -58,7 +58,7 @@
             flex-direction: column;
             gap: 15px;
             width: 100%;
-            margin-bottom: 30px; 
+            margin-bottom: 20px; 
         }
 
         .btn-img {
@@ -71,6 +71,50 @@
         .btn-img:hover {
             transform: translateY(-3px) scale(1.03);
             filter: brightness(1.1);
+        }
+
+        /* 🌟 โซนแถบคะแนนรีวิวเพิ่มความน่าเชื่อถือ */
+        .rating-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .rating-stars {
+            color: #ffcc00;
+            margin-right: 5px;
+        }
+
+        /* 📦 โซนการ์ดการันตี 3 ข้อ */
+        .trust-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 320px;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+        .trust-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px 5px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .trust-icon {
+            font-size: 18px;
         }
 
         /* โซนสไลด์ */
@@ -226,6 +270,25 @@
             </a>
         </div>
 
+        <div class="rating-box">
+            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากลูกค้าผู้ใช้จริง
+        </div>
+
+        <div class="trust-container">
+            <div class="trust-card">
+                <span class="trust-icon">📦</span>
+                <span>จัดส่งฟรีทั่วไทย</span>
+            </div>
+            <div class="trust-card">
+                <span class="trust-icon">🛡️</span>
+                <span>เก็บเงินปลายทาง</span>
+            </div>
+            <div class="trust-card">
+                <span class="trust-icon">⭐</span>
+                <span>รับประกันของแท้</span>
+            </div>
+        </div>
+
         <div class="slider-wrapper">
             <div class="slider" id="slider">
                 <img src="slide1.png" alt="Slide 1">
@@ -238,7 +301,7 @@
 
         <div class="order-panel">
             <div class="order-header-wrapper">
-                <div class="order-header">💰รายการถอนล่าสุด💰</div>
+                <div class="order-header">🛒 รายการสั่งซื้อล่าสุด</div>
                 <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
             </div>
             
@@ -248,7 +311,7 @@
     </div>
 
     <script>
-        // --- 1. โค้ดควบคุมสไลด์ภาพเลื่อนอัตโนมัติ ---
+        // --- โค้ดควบคุมสไลด์ภาพเลื่อนอัตโนมัติ ---
         const slider = document.getElementById('slider');
         let index = 0;
         const totalImages = 5; 
@@ -258,7 +321,7 @@
             slider.style.transform = `translateX(${-index * 100}%)`;
         }, 3000); 
 
-        // --- 2. โค้ดนาฬิกา Realtime ---
+        // --- โค้ดนาฬิกา Realtime ---
         function updateClock() {
             const now = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -269,7 +332,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // --- 3. ระบบสุ่มเบอร์โทรศัพท์มั่วๆ ปิดท้าย 5 ตัวหลัง (ไม่มีชื่อแล้ว) ---
+        // --- ระบบสุ่มเบอร์โทรศัพท์มั่วๆ ---
         const prefixes = ["080", "081", "082", "083", "084", "085", "086", "087", "088", "089", "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", "061", "062", "063", "064", "065"];
         const times = ["เมื่อสักครู่นี้", "1 นาทีที่แล้ว", "2 นาทีที่แล้ว", "3 นาทีที่แล้ว", "4 นาทีที่แล้ว"];
 
@@ -281,11 +344,8 @@
 
         function createRandomOrder(timeText) {
             const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
-            // สุ่มเลขตัวที่ 4 (เช่น 081-5)
             const midDigit = Math.floor(Math.random() * 10); 
-            // โครงสร้างปิดบังตัวเลข 5 ตัวหลังตามพี่สั่ง เป๊ะๆ
             const userStr = `เบอร์โทรศัพท์: ${pref}-${midDigit}x-xxxx`;
-            
             const amountStr = getRandomAmount();
             const timeStr = timeText ? timeText : times[Math.floor(Math.random() * times.length)];
 
@@ -300,7 +360,7 @@
                     </div>
                     <div class="item-right">
                         <div class="item-amount">${amountStr}</div>
-                        <div class="item-status">✓ สำเจร็จ</div>
+                        <div class="item-status">✓ ชำระเงินแล้ว</div>
                     </div>
                 </div>
             `;
@@ -308,28 +368,23 @@
 
         const orderList = document.getElementById('orderList');
 
-        // สร้างรายการตั้งต้น
         orderList.innerHTML = 
             createRandomOrder("เมื่อสักครู่นี้") +
             createRandomOrder("1 นาทีที่แล้ว") +
             createRandomOrder("3 นาทีที่แล้ว") +
             createRandomOrder("5 นาทีที่แล้ว");
 
-        // ลูปสุ่มเด้งออเดอร์ใหม่เรื่อยๆ ทุกๆ 4-8 วินาที
         function startOrderLoop() {
             const randomTime = Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000; 
             setTimeout(() => {
                 const newOrder = createRandomOrder("เมื่อสักครู่นี้");
-                
                 orderList.insertAdjacentHTML('afterbegin', newOrder);
                 if (orderList.children.length > 4) {
                     orderList.removeChild(orderList.lastChild);
                 }
-
                 if(orderList.children[1]) orderList.children[1].querySelector('.item-time').innerText = "1 นาทีที่แล้ว";
                 if(orderList.children[2]) orderList.children[2].querySelector('.item-time').innerText = "2 นาทีที่แล้ว";
                 if(orderList.children[3]) orderList.children[3].querySelector('.item-time').innerText = "4 นาทีที่แล้ว";
-
                 startOrderLoop();
             }, randomTime);
         }
