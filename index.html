@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>AI Solution Co.</title>
     <style>
         * {
             margin: 0;
@@ -11,47 +11,69 @@
             box-sizing: border-box;
         }
         body {
-            background-image: url('bg.png');
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-size: cover;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            margin-top: 100px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
         }
-        .btn-link {
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-        .btn-link:hover {
-            transform: scale(1.05);
-        }
-        .btn-link img {
-            display: block;
-            max-width: 100%;
+        .logo {
+            /* ควบคุมให้ไฟล์ขนาด 1024x1024 ย่อลงมาแสดงผลกว้างพอดีๆ บนหน้าจอ */
+            width: 100%;
+            max-width: 280px; 
             height: auto;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-img {
+            max-width: 200px; 
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-img:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <a href="#" target="_blank" class="btn-link">
-            <img src="button1.png" alt="เข้าสู่เว็บไซต์">
-        </a>
-
-        <a href="#" target="_blank" class="btn-link">
-            <img src="button2.png" alt="ติดต่อเรา">
-        </a>
+        <img src="logo.png" alt="Logo" class="logo">
+        
+        <h1>Landing Page</h1>
+        
+        <div class="btn-container">
+            <a href="#"><img src="button1.png" alt="สมัครสมาชิก" class="btn-img"></a>
+            <a href="#"><img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img"></a>
+        </div>
     </div>
 
 </body>
