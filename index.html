@@ -13,9 +13,9 @@
         body {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* ใช้รูปพื้นหลังใหญ่เต็มจอ PC */
             background-image: url('bg.png');
             background-size: cover;
             background-position: center;
@@ -23,48 +23,37 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
-        /* ส่วนที่บังคับให้เป็นรูปทรงมือถือตั้งอยู่ตรงกลางจอ PC */
-        .mobile-wrapper {
-            width: 100%;
-            max-width: 390px; /* ขนาดความกว้างเท่าจอมือถือทั่วไป */
-            min-height: 80vh;
-            background: rgba(0, 0, 0, 0.4); /* ฉากหลังโปร่งแสงในจอมือถือเพื่อให้เห็นปุ่มชัดขึ้น */
-            backdrop-filter: blur(10px); /* ทำฉากหลังเบลอนิดๆ ให้ดูหรูหรา */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px; /* ทำมุมโค้งมนเหมือนขอบมือถือ */
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .container {
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* ใส่เงาให้ดูมีมิติ */
+            max-width: 600px;
+            width: 100%;
         }
         .logo {
+            /* ควบคุมให้ไฟล์ขนาด 1024x1024 ย่อลงมาแสดงผลกว้างพอดีๆ บนหน้าจอ */
             width: 100%;
-            max-width: 220px; /* ขนาดโลโก้ในจอมือถือ */
+            max-width: 280px; 
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         h1 {
             color: #ffffff;
-            font-size: 2rem;
+            font-size: 2.5rem;
             letter-spacing: 2px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-transform: uppercase;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .btn-container {
             display: flex;
-            flex-direction: column; /* เปลี่ยนเป็นเรียงปุ่มขึ้นลงแนวตั้งแบบมือถือ */
-            align-items: center;
+            justify-content: center;
             gap: 20px;
-            width: 100%;
+            flex-wrap: wrap;
         }
         .btn-img {
-            width: 100%;
-            max-width: 240px; /* ขนาดปุ่มกด */
+            max-width: 200px; 
             height: auto;
             cursor: pointer;
             transition: transform 0.2s;
@@ -76,17 +65,13 @@
 </head>
 <body>
 
-    <div class="mobile-wrapper">
-        
+    <div class="container">
         <img src="logo.png" alt="Logo" class="logo">
-        
-        <h1>Landing Page</h1>
         
         <div class="btn-container">
             <a href="#"><img src="button1.png" alt="สมัครสมาชิก" class="btn-img"></a>
             <a href="#"><img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img"></a>
         </div>
-        
     </div>
 
 </body>
