@@ -277,4 +277,280 @@
             align-items: center;
             gap: 12px;
             flex: 1;
-            min-width:
+            min-width: 0;
+        }
+
+        .item-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(46, 163, 74, 0.15);
+            border: 1px solid rgba(46, 163, 74, 0.3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            flex: 1; 
+        }
+
+        .item-user {
+            font-size: 13px;
+            font-weight: 400;
+            color: #f4f4f5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip; 
+        }
+
+        .item-time {
+            font-size: 11px;
+            color: #71717a;
+            margin-top: 3px;
+        }
+
+        .item-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 95px; 
+        }
+
+        .item-amount {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2ea34a; 
+            margin-bottom: 2px;
+        }
+
+        .item-status {
+            font-size: 11px;
+            color: #2ea34a;
+            background: rgba(46, 163, 74, 0.15);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 400;
+            white-space: nowrap; 
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="BF CLUB Logo" class="logo">
+        
+        <div class="rating-box">
+            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากผู้ใช้จริง
+        </div>
+
+        <div class="trust-container">
+            <div class="trust-card">
+                <span class="trust-icon">🛡️</span>
+                <span>ดูแลตลอด 24 ชั่วโมง</span>
+            </div>
+            <div class="trust-card">
+                <span class="trust-icon">⭐</span>
+                <span>มั่นคง 100% ไม่มีโกง</span>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="https://example.com/order" target="_blank">
+                <img src="button1.png" alt="สั่งซื้อสินค้า" class="btn-img">
+            </a>
+            <a href="https://example.com/contact" target="_blank">
+                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
+            </a>
+        </div>
+
+        <div class="social-proof-panel">
+            <div class="proof-title">🏆 เสียงตอบรับจากคลับของเรา</div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-num">15,400+</div>
+                    <div class="stat-label">ออเดอร์ทั้งหมด</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">99.8%</div>
+                    <div class="stat-label">พึงพอใจบริการ</div>
+                </div>
+            </div>
+
+            <div class="review-box" id="dynamicReviewBox"></div>
+        </div>
+
+        <div class="slider-wrapper">
+            <div class="slider" id="slider">
+                <img src="slide1.png" alt="Slide 1">
+                <img src="slide2.png" alt="Slide 2">
+                <img src="slide3.png" alt="Slide 3">
+                <img src="slide4.png" alt="Slide 4">
+                <img src="slide5.png" alt="Slide 5">
+            </div>
+        </div>
+
+        <div class="order-panel">
+            <div class="order-header-wrapper">
+                <div class="order-header">💰 รายการล่าสุด 💰</div>
+                <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
+            </div>
+            
+            <div class="order-list" id="orderList"></div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- ข้อมูลนำหน้าเบอร์โทรศัทพ์ ---
+        const prefixes = [
+            "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
+            "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
+            "061", "062", "063", "064", "065"
+        ];
+
+        // --- คลังข้อความรีวิวจากลูกค้า ---
+        const reviewTexts = [
+            "ตอนแรกก็ลังเล แต่พอลองแล้วระบบไวมาก ได้ของจริง แอดมินคุยดีประทับใจครับ",
+            "มั่นใจเจ้านี้ที่สุดแล้วค่ะ เติมกี่รอบก็ไม่มีปัญหา แนะนำเพื่อนๆ มาใช้กันหลายคนแล้ว",
+            "ระบบออโต้เสร็จไวมาก ไม่ถึง 2 นาทีเงินเข้าเลย มั่นคงไว้ใจได้จริงครับ",
+            "ใช้บริการคลับนี้ประจำ ปลอดภัย 100% ไม่มีประวัติโกง สบายใจได้เลยค่ะ",
+            "ราคาดีงาม แถมแอดมินบริการดีตอบแชตไวมาก แนะนำเลยครับ ไม่ผิดหวังแน่นอน",
+            "ลองเปิดใจใช้ครั้งแรกติดใจเลย ของเขาดีจริง ระบบเสถียรมากค่ะ",
+            "เปิดต้อนรับตลอด 24 ชั่วโมงของจริง ดึกแค่ไหนก็ทำรายการได้ไวปานสายฟ้า",
+            "คุ้มค่าคุ้มราคาที่สุดในตลาดตอนนี้แล้ว ยืนยันอีกเสียงว่าได้จริงชัวร์ครับ"
+        ];
+
+        // ฟังก์ชันสุ่มเบอร์โทรลูกค้าให้อยู่ในฟอร์แมต [คุณลูกค้า: 0XX-XXX-XXXX]
+        function generateRandomUser() {
+            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            const d4 = Math.floor(Math.random() * 10);
+            const d5 = Math.floor(Math.random() * 10);
+            const d6 = Math.floor(Math.random() * 10);
+            return "คุณลูกค้า: " + randomPrefix + "-" + d4 + d5 + d6 + "-XXXX";
+        }
+
+        // --- ระบบสุ่มเปลี่ยนรีวิว 2 รายการ ทุกๆ 30 วินาที ---
+        function renderDynamicReviews() {
+            const box = document.getElementById('dynamicReviewBox');
+            
+            // สุ่มเลือกข้อความรีวิวไม่ให้ซ้ำกันในหนึ่งรอบ
+            let index1 = Math.floor(Math.random() * reviewTexts.length);
+            let index2 = Math.floor(Math.random() * reviewTexts.length);
+            while (index1 === index2) {
+                index2 = Math.floor(Math.random() * reviewTexts.length);
+            }
+
+            const htmlContent = `
+                <div class="review-card" style="animation: fadeInDown 0.5s ease-out;">
+                    <div class="review-user">${generateRandomUser()} <span style="color:#ffcc00">⭐⭐⭐⭐•</span></div>
+                    <div class="review-text">"${reviewTexts[index1]}"</div>
+                </div>
+                <div class="review-card" style="animation: fadeInDown 0.5s ease-out;">
+                    <div class="review-user">${generateRandomUser()} <span style="color:#ffcc00">⭐⭐⭐⭐⭐</span></div>
+                    <div class="review-text">"${reviewTexts[index2]}"</div>
+                </div>
+            `;
+            box.innerHTML = htmlContent;
+        }
+        
+        // รันครั้งแรกทันทีที่เปิดหน้าเว็บ และตั้งอินเทอร์วัลทุก 30 วินาที (30000 มิลลิวินาที)
+        renderDynamicReviews();
+        setInterval(renderDynamicReviews, 30000);
+
+
+        // --- ระบบสไลด์ภาพลื่นไหล ---
+        const slider = document.getElementById('slider');
+        let index = 0;
+        const totalImages = 5; 
+        
+        setInterval(() => {
+            index++;
+            if (index >= totalImages) { 
+                index = 0; 
+            }
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }, 3000); 
+
+        // --- ระบบนาฬิกาเวลาปัจจุบัน ---
+        function updateClock() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('th-TH', options);
+            const timeStr = now.toLocaleTimeString('th-TH');
+            document.getElementById('liveClock').innerHTML = dateStr + " " + timeStr;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- ระบบสุ่มออเดอร์แจ้งเตือนเงินเข้าบอร์ดล่าง ---
+        const amounts = [
+            12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
+            89, 150, 350, 590, 890, 1200, 1590, 2350, 3190, 4500,
+            250, 450, 690, 990, 1350, 1690, 2450, 4800, 5500, 7990
+        ];
+
+        function getRandomAmount() {
+            const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
+            return randomPrice.toLocaleString('th-TH') + " ฿";
+        }
+
+        function createRandomOrder(timeText) {
+            const amountStr = getRandomAmount();
+            return '<div class="order-item">' +
+                    '<div class="item-left">' +
+                        '<div class="item-icon">💲</div>' +
+                        '<div class="item-info">' +
+                            '<div class="item-user">' + generateRandomUser() + '</div>' +
+                            '<div class="item-time">' + timeText + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="item-right">' +
+                        '<div class="item-amount">' + amountStr + '</div>' +
+                        '<div class="item-status">✓ จ่ายแล้ว</div>' +
+                    '</div>' +
+                '</div>';
+        }
+
+        const orderList = document.getElementById('orderList');
+        orderList.innerHTML = 
+            createRandomOrder("เมื่อสักครู่นี้") +
+            createRandomOrder("1 นาทีที่แล้ว") +
+            createRandomOrder("2 นาทีที่แล้ว") +
+            createRandomOrder("4 นาทีที่แล้ว");
+
+        function startOrderLoop() {
+            const minTime = 20000; 
+            const maxTime = 60000; 
+            const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime; 
+
+            setTimeout(() => {
+                const newOrder = createRandomOrder("เมื่อสักครู่นี้");
+                orderList.insertAdjacentHTML('afterbegin', newOrder);
+                
+                if (orderList.children.length > 4) {
+                    orderList.removeChild(orderList.lastChild);
+                }
+                
+                if(orderList.children[1]) orderList.children[1].querySelector('.item-time').innerText = "1 นาทีที่แล้ว";
+                if(orderList.children[2]) orderList.children[2].querySelector('.item-time').innerText = "2 นาทีที่แล้ว";
+                if(orderList.children[3]) orderList.children[3].querySelector('.item-time').innerText = "4 นาทีที่แล้ว";
+                
+                startOrderLoop(); 
+            }, randomTime);
+        }
+        startOrderLoop();
+    </script>
+
+</body>
+</html>
