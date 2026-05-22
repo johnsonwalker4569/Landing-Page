@@ -122,7 +122,7 @@
         }
 
         /* ----------------------------------------- */
-        /* Social Proof Styles                       */
+        /* Social Proof Styles (ปรับเหลือ 1 กล่องรีวิว)  */
         /* ----------------------------------------- */
         .social-proof-panel {
             width: 100%;
@@ -172,6 +172,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            min-height: 75px; /* ล็อกความสูงเพื่อไม่ให้หน้าเว็บกระตุกขยับตอนเปลี่ยนคำ */
         }
         .review-card {
             background: rgba(255, 255, 255, 0.03);
@@ -179,7 +180,7 @@
             border-radius: 12px;
             font-size: 11.5px;
             border-left: 3px solid #ffcc00;
-            animation: fadeInDown 0.5s ease-out; /* ใส่เอฟเฟกต์ตอนรีวิวเปลี่ยน */
+            animation: fadeInDown 0.5s ease-out; 
         }
         .review-user {
             font-weight: 400;
@@ -419,7 +420,7 @@
             "061", "062", "063", "064", "065"
         ];
 
-        // --- คลังข้อความรีวิวจากลูกค้า ---
+        // --- คลังข้อความรีวิวจากลูกค้า (จัดเต็ม 20 ข้อความ) ---
         const reviewTexts = [
             "ตอนแรกก็ลังเล แต่พอลองแล้วระบบไวมาก ได้ของจริง แอดมินคุยดีประทับใจครับ",
             "มั่นใจเจ้านี้ที่สุดแล้วค่ะ เติมกี่รอบก็ไม่มีปัญหา แนะนำเพื่อนๆ มาใช้กันหลายคนแล้ว",
@@ -428,7 +429,19 @@
             "ราคาดีงาม แถมแอดมินบริการดีตอบแชตไวมาก แนะนำเลยครับ ไม่ผิดหวังแน่นอน",
             "ลองเปิดใจใช้ครั้งแรกติดใจเลย ของเขาดีจริง ระบบเสถียรมากค่ะ",
             "เปิดต้อนรับตลอด 24 ชั่วโมงของจริง ดึกแค่ไหนก็ทำรายการได้ไวปานสายฟ้า",
-            "คุ้มค่าคุ้มราคาที่สุดในตลาดตอนนี้แล้ว ยืนยันอีกเสียงว่าได้จริงชัวร์ครับ"
+            "คุ้มค่าคุ้มราคาที่สุดในตลาดตอนนี้แล้ว ยืนยันอีกเสียงว่าได้จริงชัวร์ครับ",
+            "ชอบความซื่อสัตย์ของเพจนี้ จ่ายเต็มจำนวน ไม่มีหักเปอร์เซ็นต์จุกจิก",
+            "ระบบใช้งานง่ายมาก มือใหม่ก็ทำรายการได้สบายๆ ไม่ซับซ้อนเลยค่ะ",
+            "ถอนปุ๊บเข้าปั๊บ ไวเวอร์! ยกให้เป็นที่หนึ่งในใจเลยตอนนี้",
+            "แอดมินดูแลดียิ่งกว่าวีไอพี มีปัญหาทักปุ๊บตอบปั๊บ ไม่ทิ้งลูกค้าแน่นอน",
+            "เว็บตรงไม่ผ่านเอเยนต์ มั่นคงทางการเงินสูงมาก เล่นได้เท่าไหร่จ่ายจริงครบทุกบาท",
+            "หามานานเจ้านี้แหละที่จริงใจ ไม่จกตา ได้รับของจริงรวดเร็วทันใจ",
+            "การันตีความปลอดภัยเลยครับ ตั้งแต่ใช้มาไม่เคยเจอปัญหาเลย ดีเยี่ยมจริงๆ",
+            "ประทับใจความเร็วในการปรับยอด ยอดเยอะแค่ไหนก็เสร็จภายในแป๊บเดียว",
+            "เพื่อนแนะนำมาอีกที ทีแรกไม่เชื่อ พอลองใช้เองบอกเลยว่ารู้งี้ใช้นานแล้ว",
+            "เครดิตแน่น รีวิวเพียบ สบายใจหายห่วง บริการโปร่งใสตรวจสอบได้ตลอด",
+            "ยกให้เป็นที่ 1 ของวงการเลยครับ ระบบดีที่สุดตั้งแต่เคยเจอมา",
+            "จ่ายชัวร์ มั่นคง มั่นใจ ใช้งานคลับนี้ไม่มีคำว่าผิดหวังแน่นอนค่ะ"
         ];
 
         // ฟังก์ชันสุ่มเบอร์โทรลูกค้าให้อยู่ในฟอร์แมต [คุณลูกค้า: 0XX-XXX-XXXX]
@@ -440,33 +453,25 @@
             return "คุณลูกค้า: " + randomPrefix + "-" + d4 + d5 + d6 + "-XXXX";
         }
 
-        // --- ระบบสุ่มเปลี่ยนรีวิว 2 รายการ ทุกๆ 30 วินาที ---
-        function renderDynamicReviews() {
+        // --- ระบบสุ่มเปลี่ยนรีวิว 1 ข้อความ ทุกๆ 15 วินาที ---
+        function renderDynamicReview() {
             const box = document.getElementById('dynamicReviewBox');
+            const randomIndex = Math.floor(Math.random() * reviewTexts.length);
             
-            // สุ่มเลือกข้อความรีวิวไม่ให้ซ้ำกันในหนึ่งรอบ
-            let index1 = Math.floor(Math.random() * reviewTexts.length);
-            let index2 = Math.floor(Math.random() * reviewTexts.length);
-            while (index1 === index2) {
-                index2 = Math.floor(Math.random() * reviewTexts.length);
-            }
+            // สุ่มจำนวนดาวแบบสมจริง (สุ่มให้ได้ 5 ดาวบ่อยกว่า 4 ดาว)
+            const stars = Math.random() > 0.15 ? "⭐⭐⭐⭐⭐" : "⭐⭐⭐⭐•";
 
-            const htmlContent = `
-                <div class="review-card" style="animation: fadeInDown 0.5s ease-out;">
-                    <div class="review-user">${generateRandomUser()} <span style="color:#ffcc00">⭐⭐⭐⭐•</span></div>
-                    <div class="review-text">"${reviewTexts[index1]}"</div>
-                </div>
-                <div class="review-card" style="animation: fadeInDown 0.5s ease-out;">
-                    <div class="review-user">${generateRandomUser()} <span style="color:#ffcc00">⭐⭐⭐⭐⭐</span></div>
-                    <div class="review-text">"${reviewTexts[index2]}"</div>
+            box.innerHTML = `
+                <div class="review-card">
+                    <div class="review-user">${generateRandomUser()} <span style="color:#ffcc00">${stars}</span></div>
+                    <div class="review-text">"${reviewTexts[randomIndex]}"</div>
                 </div>
             `;
-            box.innerHTML = htmlContent;
         }
         
-        // รันครั้งแรกทันทีที่เปิดหน้าเว็บ และตั้งอินเทอร์วัลทุก 30 วินาที (30000 มิลลิวินาที)
-        renderDynamicReviews();
-        setInterval(renderDynamicReviews, 30000);
+        // เรียกใช้ครั้งแรกทันที และเปลี่ยนทุกๆ 15,000 มิลลิวินาที (15 วินาที)
+        renderDynamicReview();
+        setInterval(renderDynamicReview, 15000);
 
 
         // --- ระบบสไลด์ภาพลื่นไหล ---
