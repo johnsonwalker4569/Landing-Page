@@ -121,9 +121,9 @@
             filter: brightness(1.1);
         }
 
-        /* ========================================= */
-        /* ส่วนที่เพิ่มใหม่: Social Proof Styles      */
-        /* ========================================= */
+        /* ----------------------------------------- */
+        /* Social Proof Styles                       */
+        /* ----------------------------------------- */
         .social-proof-panel {
             width: 100%;
             max-width: 340px;
@@ -145,10 +145,8 @@
             margin-bottom: 12px;
             text-align: center;
         }
-        /* ตัวเลขสถิติ */
         .stats-grid {
             display: grid;
-            grid-cols: 1;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 10px;
             margin-bottom: 14px;
@@ -170,7 +168,6 @@
             font-size: 11px;
             color: #a1a1aa;
         }
-        /* การ์ดรีวิวคำชม */
         .review-box {
             display: flex;
             flex-direction: column;
@@ -182,19 +179,20 @@
             border-radius: 12px;
             font-size: 11.5px;
             border-left: 3px solid #ffcc00;
+            animation: fadeInDown 0.5s ease-out; /* ใส่เอฟเฟกต์ตอนรีวิวเปลี่ยน */
         }
         .review-user {
-            font-weight: 600;
+            font-weight: 400;
             color: #f4f4f5;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
         .review-text {
             color: #d4d4d8;
             line-height: 1.4;
         }
-        /* ========================================= */
+        /* ----------------------------------------- */
 
         .slider-wrapper {
             width: 100%;
@@ -279,248 +277,4 @@
             align-items: center;
             gap: 12px;
             flex: 1;
-            min-width: 0;
-        }
-
-        .item-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(46, 163, 74, 0.15);
-            border: 1px solid rgba(46, 163, 74, 0.3);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            flex-shrink: 0;
-        }
-
-        .item-info {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            flex: 1; 
-        }
-
-        .item-user {
-            font-size: 13px;
-            font-weight: 400;
-            color: #f4f4f5;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: clip; 
-        }
-
-        .item-time {
-            font-size: 11px;
-            color: #71717a;
-            margin-top: 3px;
-        }
-
-        .item-right {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 95px; 
-        }
-
-        .item-amount {
-            font-size: 15px;
-            font-weight: 600;
-            color: #2ea34a; 
-            margin-bottom: 2px;
-        }
-
-        .item-status {
-            font-size: 11px;
-            color: #2ea34a;
-            background: rgba(46, 163, 74, 0.15);
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-weight: 400;
-            white-space: nowrap; 
-            display: inline-block;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <img src="logo.png" alt="BF CLUB Logo" class="logo">
-        
-        <div class="rating-box">
-            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากผู้ใช้จริง
-        </div>
-
-        <div class="trust-container">
-            <div class="trust-card">
-                <span class="trust-icon">🛡️</span>
-                <span>ดูแลตลอด 24 ชั่วโมง</span>
-            </div>
-            <div class="trust-card">
-                <span class="trust-icon">⭐</span>
-                <span>มั่นคง 100% ไม่มีโกง</span>
-            </div>
-        </div>
-        
-        <div class="btn-container">
-            <a href="https://example.com/order" target="_blank">
-                <img src="button1.png" alt="สั่งซื้อสินค้า" class="btn-img">
-            </a>
-            <a href="https://example.com/contact" target="_blank">
-                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
-            </a>
-        </div>
-
-        <div class="social-proof-panel">
-            <div class="proof-title">🏆 เสียงตอบรับจากคลับของเรา</div>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-num">15,400+</div>
-                    <div class="stat-label">ออเดอร์ทั้งหมด</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">99.8%</div>
-                    <div class="stat-label">พึงพอใจบริการ</div>
-                </div>
-            </div>
-
-            <div class="review-box">
-                <div class="review-card">
-                    <div class="review-user">คุณ นพดล K. <span style="color:#ffcc00">⭐⭐⭐⭐⭐</span></div>
-                    <div class="review-text">"ตอนแรกก็ลังเล แต่พอลองแล้วระบบไวมาก ได้ของจริง แอดมินคุยดีประทับใจครับ"</div>
-                </div>
-                <div class="review-card">
-                    <div class="review-user">คุณ มนัสวี P. <span style="color:#ffcc00">⭐⭐⭐⭐⭐</span></div>
-                    <div class="review-text">"มั่นใจเจ้านี้ที่สุดแล้วค่ะ เติมกี่รอบก็ไม่มีปัญหา แนะนำเพื่อนๆ มาใช้กันหลายคนแล้ว"</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-wrapper">
-            <div class="slider" id="slider">
-                <img src="slide1.png" alt="Slide 1">
-                <img src="slide2.png" alt="Slide 2">
-                <img src="slide3.png" alt="Slide 3">
-                <img src="slide4.png" alt="Slide 4">
-                <img src="slide5.png" alt="Slide 5">
-            </div>
-        </div>
-
-        <div class="order-panel">
-            <div class="order-header-wrapper">
-                <div class="order-header">💰 รายการล่าสุด 💰</div>
-                <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
-            </div>
-            
-            <div class="order-list" id="orderList"></div>
-        </div>
-
-    </div>
-
-    <script>
-        // --- ระบบสไลด์ภาพลื่นไหล ---
-        const slider = document.getElementById('slider');
-        let index = 0;
-        const totalImages = 5; 
-        
-        setInterval(() => {
-            index++;
-            if (index >= totalImages) { 
-                index = 0; 
-            }
-            slider.style.transform = `translateX(${-index * 100}%)`;
-        }, 3000); 
-
-        // --- ระบบนาฬิกาเวลาปัจจุบัน ---
-        function updateClock() {
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const dateStr = now.toLocaleDateString('th-TH', options);
-            const timeStr = now.toLocaleTimeString('th-TH');
-            document.getElementById('liveClock').innerHTML = dateStr + " " + timeStr;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // --- ระบบสุ่มออเดอร์แจ้งเตือนเงินเข้า ---
-        const prefixes = [
-            "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
-            "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
-            "061", "062", "063", "064", "065"
-        ];
-
-        const amounts = [
-            12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
-            89, 150, 350, 590, 890, 1200, 1590, 2350, 3190, 4500,
-            250, 450, 690, 990, 1350, 1690, 2450, 4800, 5500, 7990
-        ];
-
-        function getRandomAmount() {
-            const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
-            return randomPrice.toLocaleString('th-TH') + " ฿";
-        }
-
-        function createRandomOrder(timeText) {
-            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-            const digit4 = Math.floor(Math.random() * 10);
-            const digit5 = Math.floor(Math.random() * 10);
-            const digit6 = Math.floor(Math.random() * 10);
-            
-            const userStr = "คุณลูกค้า: " + randomPrefix + "-" + digit4 + digit5 + digit6 + "-XXXX";
-            const amountStr = getRandomAmount();
-
-            return '<div class="order-item">' +
-                    '<div class="item-left">' +
-                        '<div class="item-icon">💲</div>' +
-                        '<div class="item-info">' +
-                            '<div class="item-user">' + userStr + '</div>' +
-                            '<div class="item-time">' + timeText + '</div>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="item-right">' +
-                        '<div class="item-amount">' + amountStr + '</div>' +
-                        '<div class="item-status">✓ จ่ายแล้ว</div>' +
-                    '</div>' +
-                '</div>';
-        }
-
-        const orderList = document.getElementById('orderList');
-
-        // แสดงผลค่าตั้งต้น
-        orderList.innerHTML = 
-            createRandomOrder("เมื่อสักครู่นี้") +
-            createRandomOrder("1 นาทีที่แล้ว") +
-            createRandomOrder("2 นาทีที่แล้ว") +
-            createRandomOrder("4 นาทีที่แล้ว");
-
-        // ลูปอัปเดตข้อมูลแบบสุ่มต่อเนื่อง
-        function startOrderLoop() {
-            const minTime = 20000; 
-            const maxTime = 60000; 
-            const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime; 
-
-            setTimeout(() => {
-                const newOrder = createRandomOrder("เมื่อสักครู่นี้");
-                orderList.insertAdjacentHTML('afterbegin', newOrder);
-                
-                if (orderList.children.length > 4) {
-                    orderList.removeChild(orderList.lastChild);
-                }
-                
-                if(orderList.children[1]) orderList.children[1].querySelector('.item-time').innerText = "1 นาทีที่แล้ว";
-                if(orderList.children[2]) orderList.children[2].querySelector('.item-time').innerText = "2 นาทีที่แล้ว";
-                if(orderList.children[3]) orderList.children[3].querySelector('.item-time').innerText = "4 นาทีที่แล้ว";
-                
-                startOrderLoop(); 
-            }, randomTime);
-        }
-        startOrderLoop();
-    </script>
-
-</body>
-</html>
+            min-width:
