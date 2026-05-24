@@ -414,18 +414,18 @@
 
     <script>
         // ==========================================
-        // 🚀 ฟังก์ชันระบบเก็บสถิติปุ่มกดไปที่หลังบ้าน Supabase
+        // 🚀 ฟังก์ชันระบบเก็บสถิติปุ่มกดไปที่หลังบ้าน Supabase (ใส่รหัสคีย์เรียบร้อยแล้วครับ)
         // ==========================================
         function trackClick(buttonId) {
             const SUPABASE_URL = 'https://pknhrmqhyznyrhyjkhkx.supabase.co'; 
-            const SUPABASE_KEY = 'เอารหัสคีย์ anon public ที่ก๊อปปี้มาวางแทนตรงนี้ทั้งหมดครับ';
+            const SUPABASE_KEY = 'sb_publishable_UVIHqpoujNiyXCaDnE955g_L9_XApsw'; 
 
             fetch(`${SUPABASE_URL}/rest/v1/click_logs`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': SUPABASE_KEY,
-                    'Authorization': `Bearer ${SUPABASE_KEY}`
+                    'apikey': SUPABASE_KEY.trim(),
+                    'Authorization': `Bearer ${SUPABASE_KEY.trim()}`
                 },
                 body: JSON.stringify({ button_id: buttonId })
             })
@@ -530,6 +530,7 @@
             return randomPrice.toLocaleString('th-TH') + " ฿";
         }
 
+        // สร้างรายการออเดอร์สุ่ม
         function createRandomOrder(timeText) {
             const amountStr = getRandomAmount();
             return '<div class="order-item">' +
