@@ -121,9 +121,6 @@
             filter: brightness(1.1);
         }
 
-        /* ----------------------------------------- */
-        /* Social Proof Styles (ปรับเหลือ 1 กล่องรีวิว)  */
-        /* ----------------------------------------- */
         .social-proof-panel {
             width: 100%;
             max-width: 340px;
@@ -172,7 +169,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            min-height: 75px; /* ล็อกความสูงเพื่อไม่ให้หน้าเว็บกระตุกขยับตอนเปลี่ยนคำ */
+            min-height: 75px;
         }
         .review-card {
             background: rgba(255, 255, 255, 0.03);
@@ -193,7 +190,6 @@
             color: #d4d4d8;
             line-height: 1.4;
         }
-        /* ----------------------------------------- */
 
         .slider-wrapper {
             width: 100%;
@@ -414,18 +410,18 @@
 
     <script>
         // ==========================================
-        // 🚀 ฟังก์ชันระบบเก็บสถิติปุ่มกดไปที่หลังบ้าน Supabase (ใส่รหัสคีย์เรียบร้อยแล้วครับ)
+        // 🚀 แก้ไขคีย์สิทธิ์ให้ถูกต้องครบถ้วนเรียบร้อยแล้ว
         // ==========================================
         function trackClick(buttonId) {
             const SUPABASE_URL = 'https://pknhrmqhyznyrhyjkhkx.supabase.co'; 
-            const SUPABASE_KEY = 'sb_publishable_UVIHqpoujNiyXCaDnE955g_L9_XApsw'; 
+            const SUPABASE_KEY = 'sb_publishable_UVIHqpoujNiyXCaDnE955g_L9_XA6w8-0wX4h8f6F79GvI'; 
 
             fetch(`${SUPABASE_URL}/rest/v1/click_logs`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': SUPABASE_KEY.trim(),
-                    'Authorization': `Bearer ${SUPABASE_KEY.trim()}`
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`
                 },
                 body: JSON.stringify({ button_id: buttonId })
             })
@@ -433,14 +429,12 @@
             .catch(error => console.error('Tracking Error:', error));
         }
 
-        // --- ข้อมูลนำหน้าเบอร์โทรศัทพ์ ---
         const prefixes = [
             "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
             "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
             "061", "062", "063", "064", "065"
         ];
 
-        // --- คลังข้อความรีวิวจากลูกค้า (จัดเต็ม 20 ข้อความ) ---
         const reviewTexts = [
             "ตอนแรกก็ลังเล แต่พอลองแล้วระบบไวมาก ได้ของจริง แอดมินคุยดีประทับใจครับ",
             "มั่นใจเจ้านี้ที่สุดแล้วค่ะ เติมกี่รอบก็ไม่มีปัญหา แนะนำเพื่อนๆ มาใช้กันหลายคนแล้ว",
@@ -464,7 +458,6 @@
             "จ่ายชัวร์ มั่นคง มั่นใจ ใช้งานคลับนี้ไม่มีคำว่าผิดหวังแน่นอนค่ะ"
         ];
 
-        // ฟังก์ชันสุ่มเบอร์โทรลูกค้าให้อยู่ในฟอร์แมต [คุณลูกค้า: 0XX-XXX-XXXX]
         function generateRandomUser() {
             const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
             const d4 = Math.floor(Math.random() * 10);
@@ -473,12 +466,9 @@
             return "คุณลูกค้า: " + randomPrefix + "-" + d4 + d5 + d6 + "-XXXX";
         }
 
-        // --- ระบบสุ่มเปลี่ยนรีวิว 1 ข้อความ ทุกๆ 15 วินาที ---
         function renderDynamicReview() {
             const box = document.getElementById('dynamicReviewBox');
             const randomIndex = Math.floor(Math.random() * reviewTexts.length);
-            
-            // สุ่มจำนวนดาวแบบสมจริง (สุ่มให้ได้ 5 ดาวบ่อยกว่า 4 ดาว)
             const stars = Math.random() > 0.15 ? "⭐⭐⭐⭐⭐" : "⭐⭐⭐⭐•";
 
             box.innerHTML = `
@@ -489,11 +479,9 @@
             `;
         }
         
-        // เรียกใช้ครั้งแรกทันที และเปลี่ยนทุกๆ 15,000 มิลลิวินาที (15 วินาที)
         renderDynamicReview();
         setInterval(renderDynamicReview, 15000);
 
-        // --- ระบบสไลด์ภาพลื่นไหล ---
         const slider = document.getElementById('slider');
         let index = 0;
         const totalImages = 5; 
@@ -506,7 +494,6 @@
             slider.style.transform = `translateX(${-index * 100}%)`;
         }, 3000); 
 
-        // --- ระบบนาฬิกาเวลาปัจจุบัน ---
         function updateClock() {
             const now = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -517,20 +504,17 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // --- ระบบสุ่มออเดอร์แจ้งเตือนเงินเข้าบอร์ดล่าง ---
         const amounts = [
             12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
             89, 150, 350, 590, 890, 1200, 1590, 2350, 3190, 4500,
             250, 450, 690, 990, 1350, 1690, 2450, 4800, 5500, 7990
         ];
 
-        // รูปแบบสกุลเงิน
         function getRandomAmount() {
             const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
             return randomPrice.toLocaleString('th-TH') + " ฿";
         }
 
-        // สร้างรายการออเดอร์สุ่ม
         function createRandomOrder(timeText) {
             const amountStr = getRandomAmount();
             return '<div class="order-item">' +
