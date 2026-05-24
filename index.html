@@ -366,10 +366,10 @@
         </div>
         
         <div class="btn-container">
-            <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank">
+            <a href="https://bfclubgame.com/?register=1&key=GOAT" target="_blank" onclick="trackClick('button1')">
                 <img src="button1.png" alt="สั่งซื้อสินค้า" class="btn-img">
             </a>
-            <a href="https://lin.ee/Smqh6Rr" target="_blank">
+            <a href="https://lin.ee/Smqh6Rr" target="_blank" onclick="trackClick('button2')">
                 <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
             </a>
         </div>
@@ -413,6 +413,26 @@
     </div>
 
     <script>
+        // ==========================================
+        // 🚀 ฟังก์ชันระบบเก็บสถิติปุ่มกดไปที่หลังบ้าน Supabase
+        // ==========================================
+        function trackClick(buttonId) {
+            const SUPABASE_URL = 'https://pknhrmqhyznyrhyjkhkx.supabase.co'; 
+            const SUPABASE_KEY = 'เอารหัสคีย์ anon public ที่ก๊อปปี้มาวางแทนตรงนี้ทั้งหมดครับ';
+
+            fetch(`${SUPABASE_URL}/rest/v1/click_logs`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`
+                },
+                body: JSON.stringify({ button_id: buttonId })
+            })
+            .then(() => console.log('Tracked successfully: ' + buttonId))
+            .catch(error => console.error('Tracking Error:', error));
+        }
+
         // --- ข้อมูลนำหน้าเบอร์โทรศัทพ์ ---
         const prefixes = [
             "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
@@ -473,7 +493,6 @@
         renderDynamicReview();
         setInterval(renderDynamicReview, 15000);
 
-
         // --- ระบบสไลด์ภาพลื่นไหล ---
         const slider = document.getElementById('slider');
         let index = 0;
@@ -505,6 +524,7 @@
             250, 450, 690, 990, 1350, 1690, 2450, 4800, 5500, 7990
         ];
 
+        // รูปแบบสกุลเงิน
         function getRandomAmount() {
             const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
             return randomPrice.toLocaleString('th-TH') + " ฿";
